@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, View, Text, Button} from 'react-native'
 
-class Emerson extends Component {
+export default class App extends Component {
 
 constructor(props){
   super(props);
@@ -13,14 +13,14 @@ constructor(props){
     ativo: false,
     voltas: []
   }
-  pulsoDeClock = this.pulsoDeClock.bind(this);
-  iniciarRelogio= this.iniciarRelogio.bind(this);
-  pararRelogio = this.pararRelogio.bind(this);
-  marcaVolta = this.marcaVolta.bind(this);
-  zerarRelogio = this.zerarRelogio.bind(this);
+  this.pulsoDeClock = this.pulsoDeClock.bind(this);
+  this.iniciarRelogio= this.iniciarRelogio.bind(this);
+  this.pararRelogio = this.pararRelogio.bind(this);
+  this.marcaVolta = this.marcaVolta.bind(this);
+  this.zerarRelogio = this.zerarRelogio.bind(this);
 }
 iniciarRelogio(){
-  if(this.state.ativo){
+  if(!this.state.ativo){
     this.setState({clock : setInterval(this.pulsoDeClock,1000)})
     this.setState({ativo: true})
   }
@@ -64,7 +64,7 @@ iniciarRelogio(){
 
   zerarRelogio(){
     this.pararRelogio();
-    this.setState({segundoss: 0, minutos:0, horas: 0})
+    this.setState({segundos: 0, minutos:0, horas: 0})
     if (this.state.voltas.length>0){
       this.state.voltas.push(" -------- \n ")
     }
@@ -97,6 +97,4 @@ iniciarRelogio(){
         </ScrollView>
       )
   }
-
-
 }
